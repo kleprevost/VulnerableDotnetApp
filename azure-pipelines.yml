@@ -11,12 +11,11 @@ pool:
 
 steps:
 - task: AzureRmWebAppDeployment@4
-  displayName: 'Deploy to Staging Slot'
-- task: AzureRmWebAppDeployment@4
+  enabled: true
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'MSDN'
     appType: 'webApp'
     WebAppName: 'testvulnappkmx2'
+    ResourceGroupName: '230370_rg_Linux_centralus'
     ConfigurationSettings: '-httpsOnly true'
-  enabled: true
