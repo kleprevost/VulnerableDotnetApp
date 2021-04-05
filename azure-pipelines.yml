@@ -10,9 +10,13 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    Java -version
-  displayName: 'Run a multi-line script'
+- task: AzureRmWebAppDeployment@4
+  displayName: 'Deploy to Staging Slot'
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'MSDN'
+    appType: 'webApp'
+    WebAppName: 'testvulnappkmx2'
+    ConfigurationSettings: '-httpsOnly true'
+  enabled: true
